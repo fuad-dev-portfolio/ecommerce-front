@@ -13,7 +13,7 @@ const CheckoutPage = () => {
   const { notDiscountTotalPrice, totalPrice, totalQty, fetchCartItem, fetchOrder, guestCart, loadGuestCart } = useGlobalContext()
   const [openAddress, setOpenAddress] = useState(false)
   const addressList = useSelector(state => state.addresses.addressList)
-  const [selectAddress, setSelectAddress] = useState(0)
+  const [selectAddress, setSelectAddress] = useState("0")
   const cartItemsList = useSelector(state => state.cartItem.cart)
   const user = useSelector(state => state.user)
   const navigate = useNavigate()
@@ -101,7 +101,7 @@ const CheckoutPage = () => {
             data : {
               list_items : displayCart,
               addressId : addressList[selectAddress]?._id,
-              subSubTotalAmt : totalPrice,
+              subTotalAmt : totalPrice,
               totalAmt :  totalPrice,
             }
           })
@@ -132,7 +132,7 @@ const CheckoutPage = () => {
     <section className='bg-blue-50'>
       <div className='container mx-auto p-4 flex flex-col lg:flex-row w-full gap-5 justify-between'>
         <div className='w-full'>
-          {user._id ? (
+          {user._id && !isGuestMode ? (
             <>
               <div className='flex items-center justify-between mb-4'>
                 <h3 className='text-lg font-semibold'>Choose your address</h3>
@@ -254,7 +254,7 @@ const CheckoutPage = () => {
                     />
                   </div>
                 </div>
-                {user._id && (
+                {isGuestMode && (
                   <button 
                     onClick={() => setIsGuestMode(false)}
                     className='text-sm text-blue-600 hover:underline'
@@ -289,7 +289,7 @@ const CheckoutPage = () => {
             </div>
           </div>
           <div className='w-full flex flex-col gap-4'>
-            {user._id ? (
+            {user._id && !isGuestMode ? (
               <button className='py-2 px-4 border-2 border-green-600 font-semibold text-green-600 hover:bg-green-600 hover:text-white' onClick={handleCashOnDelivery}>Cash on Delivery</button>
             ) : (
               <>
