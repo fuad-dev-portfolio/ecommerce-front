@@ -1,9 +1,9 @@
-import React from 'react'
-import banner1 from '../assets/banner1.png'
+// import React from 'react'
+import banner1 from '../assets/banner1.jpg'
 import bannerMobile from '../assets/banner-mobile.jpg'
 import { useSelector } from 'react-redux'
 import { valideURLConvert } from '../utils/valideURLConvert'
-import { Link, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay'
 
 const Home = () => {
@@ -61,7 +61,7 @@ const Home = () => {
                 )
               })
             ) : (
-              categoryData.map((cat, index) => {
+              categoryData.map((cat) => {
                 return (
                   <div
                     key={cat._id + "displayCategory"}
@@ -87,7 +87,7 @@ const Home = () => {
       </div>
 
       {/* Display Category Products */}
-      {categoryData?.map((c, index) => {
+      {categoryData?.map((c) => {
         return (
           <CategoryWiseProductDisplay
             key={c?._id + "CategorywiseProduct"}
