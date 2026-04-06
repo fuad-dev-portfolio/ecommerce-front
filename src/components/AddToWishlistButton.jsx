@@ -83,14 +83,14 @@ const AddToWishlistButton = ({ productData, className = "" }) => {
     return (
         <button
             onClick={handleWishlistToggle}
-            disabled={loading}
+            disabled={loading || typeof productId !== 'string'}
             className={`
                 p-2 rounded-full transition-all duration-200 hover:scale-110
                 ${isInWishlist
                     ? 'bg-red-50 text-red-500 hover:bg-red-100'
                     : 'bg-gray-50 text-gray-400 hover:bg-red-50 hover:text-red-400'
                 }
-                ${loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                ${(loading || typeof productId !== 'string') ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 ${className}
             `}
             title={isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
