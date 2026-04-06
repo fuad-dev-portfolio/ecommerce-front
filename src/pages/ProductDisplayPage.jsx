@@ -11,6 +11,7 @@ import image2 from '../assets/Best_Prices_Offers.png'
 import image3 from '../assets/Wide_Assortment.png'
 import { pricewithDiscount } from '../utils/PriceWithDiscount'
 import AddToCartButton from '../components/AddToCartButton'
+import AddToWishlistButton from '../components/AddToWishlistButton'
 
 const ProductDisplayPage = () => {
   const params = useParams()
@@ -127,7 +128,7 @@ const ProductDisplayPage = () => {
 
         <div className='p-4 lg:pl-7 text-base lg:text-lg'>
             <p className='bg-green-300 w-fit px-2 rounded-full'>10 Min</p>
-            <h2 className='text-lg font-semibold lg:text-3xl'>{data.name}</h2>  
+            <h2 className='text-lg font-semibold lg:text-3xl'>{data.name}</h2>
             <p className=''>{data.unit}</p> 
             <Divider/>
             <div>
@@ -151,17 +152,19 @@ const ProductDisplayPage = () => {
 
             </div> 
               
-              {
-                data.stock === 0 ? (
-                  <p className='text-lg text-red-500 my-2'>Out of Stock</p>
-                ) 
-                : (
-                  // <button className='my-4 px-4 py-1 bg-green-600 hover:bg-green-700 text-white rounded'>Add</button>
-                  <div className='my-4'>
+              <div className='flex items-center gap-4 my-4'>
+                {
+                  data.stock === 0 ? (
+                    <p className='text-lg text-red-500 my-2'>Out of Stock</p>
+                  ) 
+                  : (
                     <AddToCartButton data={data}/>
-                  </div>
-                )
-              }
+                  )
+                }
+                {productId && (
+                  <AddToWishlistButton productData={data} className="border shadow-sm p-3" />
+                )}
+              </div>
            
 
             <h2 className='font-semibold'>Why shop from Ghor2ghor? </h2>

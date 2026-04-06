@@ -198,6 +198,28 @@ const SummaryApi = {
     guestCheckout : {
         url : '/api/order/guest-checkout',
         method : 'post'
+    },
+    //Wishlist APIs
+    addToWishlist : {
+        url : '/api/wishlist/add',
+        method : 'post'
+    },
+    removeFromWishlist : {
+        url : '/api/wishlist/remove',
+        method : 'post'
+    },
+    getWishlist : {
+        url : '/api/wishlist/get',
+        method : 'get'
+    },
+    checkWishlist : {
+        url : '/api/wishlist/check',
+        method : 'get'
+    },
+    //Track Order API
+    trackOrder : {
+        url : '/api/order/track',
+        method : 'get'
     }
 }
 

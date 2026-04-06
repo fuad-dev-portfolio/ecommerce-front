@@ -9,6 +9,7 @@ import { pricewithDiscount } from "../utils/PriceWithDiscount";
 import { handleAddAddress } from "../store/addressSlice";
 import { setOrder } from "../store/orderSlice";
 import { getGuestCart, clearGuestCart } from "../utils/guestCart";
+import { setWishlist, clearWishlist } from "../store/wishlistSlice";
 
 export const GlobalContext = createContext(null)
 
@@ -140,6 +141,7 @@ const GlobalProvider = ({children}) => {
     const handleLogoutOut = ()=>{
         localStorage.clear()
         dispatch(handleAddItemCart([]))
+        dispatch(clearWishlist())
         setGuestCart([])
     }
 
@@ -172,11 +174,27 @@ const GlobalProvider = ({children}) => {
       }
     }
 
+    const fetchWishlist = async()=>{
+      try {
+        const response = await Axios({
+          ...SummaryApi.getWishlist
+        })
+        const { data : responseData } = response
+
+        if(responseData.success){
+          dispatch(setWishlist(responseData.data))
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     useEffect(()=>{
       if(user._id){
         fetchCartItem()
         fetchAddress()
         fetchOrder()
+        fetchWishlist()
       } else {
         handleLogoutOut()
       }
@@ -192,6 +210,7 @@ const GlobalProvider = ({children}) => {
             totalQty,
             notDiscountTotalPrice,
             fetchOrder,
+            fetchWishlist,
             guestCart,
             loadGuestCart
         }}>

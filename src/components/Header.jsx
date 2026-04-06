@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import logo1 from '../assets/logo1.png'
 import Search from './Search'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaRegCircleUser } from "react-icons/fa6";
-import useMobile from '../hooks/useMobile';
+import { TbPackage } from "react-icons/tb";
 import { BsCart4 } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import UserMenu from './UserMenu';
@@ -13,13 +14,11 @@ import { useGlobalContext } from '../provider/GlobalProvider';
 import DisplayCartItem from './DisplayCartItem';
 
 const Header = () => {
-    const [isMobile] = useMobile()
-    const location = useLocation()
-    const isSearchPage = location.pathname === "/search"
     const navigate = useNavigate()
     const user = useSelector((state) => state?.user)
     const [openUserMenu, setOpenUserMenu] = useState(false)
     const cartItem = useSelector(state => state.cartItem.cart)
+    const wishlistItems = useSelector(state => state.wishlist.wishlist)
     const { totalPrice, totalQty, guestCart } = useGlobalContext()
     const [openCartSection, setOpenCartSection] = useState(false)
 
@@ -41,6 +40,14 @@ const Header = () => {
         }
 
         navigate("/user")
+    }
+
+    const handleWishlistClick = () => {
+        if (!user._id) {
+            navigate("/login")
+            return
+        }
+        navigate("/dashboard/wishlist")
     }
 
     return (
@@ -70,8 +77,37 @@ const Header = () => {
                         <FaRegCircleUser size={20} />
                     </button>
 
+                    <button
+                        onClick={handleWishlistClick}
+                        className='p-1.5 md:p-2 text-white hover:text-red-200 lg:hidden relative'
+                    >
+                        <FaHeart size={20} className={`${user._id && wishlistItems.length > 0 ? 'text-red-400' : ''}`} />
+                        {user._id && wishlistItems.length > 0 && (
+                            <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold'>
+                                {wishlistItems.length}
+                            </span>
+                        )}
+                    </button>
+
                     {/**Desktop**/}
                     <div className='hidden lg:flex items-center gap-4 xl:gap-6'>
+                        <Link to={"/track-order"} className='flex items-center gap-1.5 text-white hover:text-green-100 text-sm font-medium'>
+                            <TbPackage size={18} />
+                            <span className='hidden sm:inline'>Track Order</span>
+                        </Link>
+
+                        <button
+                            onClick={handleWishlistClick}
+                            className='flex items-center gap-1.5 md:gap-2 text-white hover:text-red-200 transition-colors text-sm font-medium relative'
+                        >
+                            <FaHeart size={18} className={`${user._id && wishlistItems.length > 0 ? 'text-red-400' : ''}`} />
+                            <span className='hidden sm:inline'>Wishlist</span>
+                            {user._id && wishlistItems.length > 0 && (
+                                <span className='absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold'>
+                                    {wishlistItems.length}
+                                </span>
+                            )}
+                        </button>
                         {
                             user?._id ? (
                                 <div className='relative'>

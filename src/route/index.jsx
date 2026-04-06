@@ -27,6 +27,8 @@ import CheckoutPage from "../pages/CheckoutPage";
 import Success from "../pages/Success";
 import Cancel from "../pages/Cancel";
 import UsersPage from "../pages/UsersPage";
+import Wishlist from "../pages/Wishlist";
+import TrackOrder from "../pages/TrackOrder";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +82,10 @@ const router = createBrowserRouter([
                     {
                         path : "myorders",
                         element : <MyOrders/>
+                    },
+                    {
+                        path : "wishlist",
+                        element : <Wishlist/>
                     },
                     {
                         path : "address",
@@ -139,6 +145,10 @@ const router = createBrowserRouter([
             {
                 path : 'cancel',
                 element : <Cancel/>
+            },
+            {
+                path : "track-order",
+                element : <TrackOrder/>
             }
         ]
     }
