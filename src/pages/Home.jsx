@@ -76,11 +76,11 @@ const Home = () => {
       <div className='w-full px-2 md:px-4 py-2 md:py-3'>
         {loadingBanner ? (
           <div className="w-full rounded-lg overflow-hidden bg-gray-200 animate-pulse h-56 md:h-80 lg:h-96"></div>
-        ) : banner && (banner.leftBanners?.length > 0 || banner.rightBanner) ? (
+        ) : banner && (banner.leftBanners?.length > 0 || banner.rightBanner?.image) ? (
           <div className="w-full">
             <div className="flex flex-col md:flex-row gap-3 md:gap-4">
               {/* Left Side - Multiple Images Slider with Bullet Points */}
-              <div className={`${banner.rightBanner ? 'md:w-2/3' : 'w-full'} relative h-56 md:h-80 lg:h-96 overflow-hidden rounded-lg shadow-md w-full`}>
+              <div className={`${banner.rightBanner?.image ? 'md:w-2/3' : 'w-full'} relative h-56 md:h-80 lg:h-96 overflow-hidden rounded-lg shadow-md w-full`}>
                 {banner.leftBanners?.length > 0 ? (
                   <>
                     <div className="absolute inset-0 w-full h-full">
@@ -129,13 +129,13 @@ const Home = () => {
               </div>
 
               {/* Right Side - Single Advertisement Image (Hidden on Mobile) */}
-              {banner.rightBanner && (
+              {banner.rightBanner?.image && (
                 <div 
                   className="hidden md:block md:w-1/3 w-full h-56 md:h-80 lg:h-96 cursor-pointer"
-                  onClick={() => handleBannerClick(banner.rightBanner.url)}
+                  onClick={() => handleBannerClick(banner.rightBanner?.url)}
                 >
                   <img
-                    src={banner.rightBanner.image}
+                    src={banner.rightBanner?.image}
                     className='w-full h-full rounded-lg shadow-md'
                     alt='Advertisement'
                   />

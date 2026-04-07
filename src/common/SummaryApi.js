@@ -231,7 +231,7 @@ const SummaryApi = {
         method : 'post'
     },
     deleteRightBanner : {
-        url : '/api/banner/delete-right',
+        url : '/api/banner/right',
         method : 'delete'
     },
     deleteLeftBanner : (index) => ({
