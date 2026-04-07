@@ -104,7 +104,7 @@ const Header = () => {
                             user?._id ? (
                                 <div className='relative'>
                                     <div onClick={() => setOpenUserMenu(preve => !preve)} className='flex select-none items-center gap-1 cursor-pointer'>
-                                        <p className='text-white font-medium text-sm'>Account</p>
+                                        <p className='text-black font-medium text-sm'>Account</p>
                                         {
                                             openUserMenu ? (
                                                 <GoTriangleUp size={16} />

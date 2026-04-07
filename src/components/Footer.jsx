@@ -53,15 +53,15 @@ const Footer = () => {
                         <ul className='space-y-3'>
                             <li className='flex items-center gap-2 text-sm text-gray-400'>
                                 <FaMapMarkerAlt className='text-green-500' />
-                                <span>Bangladesh</span>
+                                <span>14/D,Kaderabad Housing, Mohammadpur,Dhaka</span>
                             </li>
                             <li className='flex items-center gap-2 text-sm text-gray-400'>
                                 <FaPhoneAlt className='text-green-500' />
-                                <span>+880 1234 567890</span>
+                                <span>+8801521545813</span>
                             </li>
                             <li className='flex items-center gap-2 text-sm text-gray-400'>
                                 <FaEnvelope className='text-green-500' />
-                                <span>support@ghor2ghor.com</span>
+                                <span>gram2ghor00@gmail.com</span>
                             </li>
                         </ul>
                     </div>
