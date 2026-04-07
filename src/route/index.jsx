@@ -29,6 +29,7 @@ import Cancel from "../pages/Cancel";
 import UsersPage from "../pages/UsersPage";
 import Wishlist from "../pages/Wishlist";
 import TrackOrder from "../pages/TrackOrder";
+import BannerManagement from "../pages/BannerManagement";
 
 const router = createBrowserRouter([
     {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
                     {
                         path : 'product',
                         element : <AdminPermision><ProductAdmin/></AdminPermision>
+                    },
+                    {
+                        path : 'banner',
+                        element : <AdminPermision><BannerManagement/></AdminPermision>
                     },
                     {
                         path : 'report',

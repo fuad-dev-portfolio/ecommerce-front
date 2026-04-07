@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logo1 from '../assets/logo1.png'
+import logo from '../assets/logo.png'
 import Search from './Search'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -52,12 +52,12 @@ const Header = () => {
     }
 
     return (
-        <header className='h-auto min-h-[64px] md:h-20 w-full shadow-md fixed top-0 z-40 flex flex-col justify-center bg-gradient-to-r from-green-600 to-green-500 border-b border-green-400'>
+        <header className='h-auto min-h-[64px] md:h-20 w-full shadow-md fixed top-0 z-40 flex flex-col justify-center bg-gradient-to-r bg-[#F5F5F5] border-b'>
             <div className='container mx-auto flex items-center px-3 md:px-4 justify-between w-full gap-2 md:gap-4 py-2 md:py-0 h-16 md:h-full'>
-                
+
                 {/**Mobile Menu Button - ONLY VISIBLE ON MOBILE */}
                 <div className='md:hidden flex items-center justify-start flex-1'>
-                    <button onClick={() => setIsMobileMenuOpen(true)} className='p-1 text-white hover:text-green-100 transition-colors'>
+                    <button onClick={() => setIsMobileMenuOpen(true)} className='p-1 text-[#A5D6A7] hover:text-green-100 transition-colors'>
                         <FaBars size={24} />
                     </button>
                 </div>
@@ -66,31 +66,31 @@ const Header = () => {
                 <div className='flex justify-center md:justify-start flex-shrink-0'>
                     <Link to={"/"} className='block'>
                         <img
-                            src={logo1}
+                            src={logo}
                             alt='Ghor2ghor'
-                            className='h-10 md:h-20 w-auto max-w-[120px] md:max-w-[220px] object-contain'
+                            className='h-28 md:h-32 w-auto max-w-[300px] md:max-w-[400px] object-contain'
                         />
                     </Link>
                 </div>
 
                 {/**Search */}
-                <div className='hidden md:block flex-1 max-w-lg mx-2 lg:mx-4'>
+                <div className='hidden md:block flex-1 max-w-lg mx-2 lg:mx-4 border-2 border-[#6BAA4E] rounded-lg'>
                     <Search />
                 </div>
 
                 {/**login and my cart */}
                 <div className='flex items-center gap-2 md:gap-3 flex-1 md:flex-shrink-0 justify-end relative'>
-                    
+
                     {/**Desktop Icons**/}
                     <div className='hidden md:flex items-center gap-4 xl:gap-6'>
-                        <Link to={"/track-order"} className='flex items-center gap-1.5 text-white hover:text-green-100 text-sm font-medium'>
+                        <Link to={"/track-order"} className='flex items-center gap-1.5 text-[#3F7D3A] hover:text-black-100 text-sm font-medium'>
                             <TbPackage size={18} />
                             <span className='hidden lg:inline'>Track Order</span>
                         </Link>
 
                         <button
                             onClick={handleWishlistClick}
-                            className='flex items-center gap-1.5 md:gap-2 text-white hover:text-red-200 transition-colors text-sm font-medium relative'
+                            className='flex items-center gap-1.5 md:gap-2 text-[#3F7D3A] hover:text-red-700 transition-colors text-sm font-medium relative'
                         >
                             <FaHeart size={18} className={`${user._id && wishlistItems.length > 0 ? 'text-red-500 relative z-10' : ''}`} />
                             <span className='hidden lg:inline'>Wishlist</span>
@@ -124,13 +124,13 @@ const Header = () => {
                                     }
                                 </div>
                             ) : (
-                                <button onClick={redirectToLoginPage} className='text-sm px-2 py-1.5 text-white font-medium hover:text-green-100'>Login</button>
+                                <button onClick={redirectToLoginPage} className='text-sm px-2 py-1.5 text-[#3F7D3A] font-medium hover:text-red-500'>Login</button>
                             )
                         }
                     </div>
 
                     {/**Cart Button (Always visible) */}
-                    <button onClick={() => setOpenCartSection(true)} className='flex items-center gap-1.5 md:gap-2 bg-amber-500 hover:bg-amber-600 px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-white font-semibold shadow-md transition-colors text-sm md:text-base relative w-9 h-9 md:w-auto md:h-auto justify-center'>
+                    <button onClick={() => setOpenCartSection(true)} className='flex items-center gap-1.5 md:gap-2 bg-[#A5D6A7] hover:bg-amber-600 px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-white font-semibold shadow-md transition-colors text-sm md:text-base relative w-9 h-9 md:w-auto md:h-auto justify-center'>
                         <div className=''>
                             <BsCart4 size={18} />
                         </div>
@@ -180,7 +180,7 @@ const Header = () => {
                         <FaTimes size={22} />
                     </button>
                 </div>
-                
+
                 <div className='flex-1 overflow-y-auto px-4 py-4 custom-scrollbar flex flex-col gap-5'>
                     {user?._id ? (
                         <>
@@ -200,14 +200,14 @@ const Header = () => {
                     {/* Quick Links inside mobile drawer */}
                     <div className='flex flex-col gap-3'>
                         <h3 className='text-sm text-gray-500 font-medium px-2'>Quick Links</h3>
-                        
+
                         <button onClick={() => { navigate('/track-order'); setIsMobileMenuOpen(false); }} className='flex items-center gap-3 text-gray-700 hover:text-green-600 hover:bg-green-50 px-2 py-2 rounded-lg transition-colors'>
                             <TbPackage size={20} /> <span className='font-medium'>Track Order</span>
                         </button>
 
                         <button onClick={() => { handleWishlistClick(); setIsMobileMenuOpen(false); }} className='flex items-center justify-between text-gray-700 hover:text-red-500 hover:bg-red-50 px-2 py-2 rounded-lg transition-colors w-full'>
                             <div className='flex items-center gap-3 font-medium'>
-                                <FaHeart size={20} className={`${user._id && wishlistItems.length > 0 ? 'text-red-500' : ''}`} /> 
+                                <FaHeart size={20} className={`${user._id && wishlistItems.length > 0 ? 'text-red-500' : ''}`} />
                                 Wishlist
                             </div>
                             {user._id && wishlistItems.length > 0 && (

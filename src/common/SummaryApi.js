@@ -220,7 +220,24 @@ const SummaryApi = {
     trackOrder : {
         url : '/api/order/track',
         method : 'get'
-    }
+    },
+    //Banner APIs
+    getBanner : {
+        url : '/api/banner/get',
+        method : 'get'
+    },
+    createBanner : {
+        url : '/api/banner/create',
+        method : 'post'
+    },
+    deleteRightBanner : {
+        url : '/api/banner/delete-right',
+        method : 'delete'
+    },
+    deleteLeftBanner : (index) => ({
+        url : `/api/banner/left/${index}`,
+        method : 'delete'
+    })
 }
 
 export default SummaryApi
